@@ -48,6 +48,7 @@ public class TaskController {
     public ResponseEntity<TaskDto> createTask(@RequestBody TaskDto taskDto) {
         Task task = mapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
+
         return ResponseEntity.ok(mapper.mapToTaskDto(savedTask));
     }
 }

@@ -38,4 +38,31 @@ class SimpleEmailServiceTest {
         //Then
         verify(javaMailSender, times(1)).send(mailMessage);
     }
+
+    @Test
+    public void shouldSendBuiltEmail() {
+        //Given
+        Mail mail = Mail.builder()
+                .mailTo("test@test.com")
+                .subject("Test")
+                .message("TestMessage")
+                .build();
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+
+        // When
+        simpleEmailService.send(
+                Mail.builder()
+                .mailTo("test@test.com")
+                .subject("Test")
+                .message("TestMessage")
+                .build()
+        );
+
+        //Then
+        verify(javaMailSender, times(1)).send(mailMessage);
+    }
 }

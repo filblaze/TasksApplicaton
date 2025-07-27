@@ -1,13 +1,12 @@
 package com.kodilla.tasks.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-import java.util.Optional;
 
 @Getter
 @AllArgsConstructor
+@Builder
 public class Mail {
 
     private final String mailTo;

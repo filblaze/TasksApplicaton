@@ -1,6 +1,6 @@
 package com.kodilla.tasks.trello.client;
 
-import com.kodilla.tasks.domain.CreatedTrelloCard;
+import com.kodilla.tasks.domain.CreatedTrelloCardDto;
 import com.kodilla.tasks.domain.TrelloBoardDto;
 import com.kodilla.tasks.domain.TrelloCardDto;
 import com.kodilla.tasks.trello.config.TrelloConfig;
@@ -54,10 +54,10 @@ public class TrelloClient {
                 .toUri();
     }
 
-    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
+    public CreatedTrelloCardDto createNewCard(TrelloCardDto trelloCardDto) {
         URI url =  buildCreateNewCardUrl(trelloCardDto);
 
-        return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
+        return restTemplate.postForObject(url, null, CreatedTrelloCardDto.class);
     }
 
     private URI buildCreateNewCardUrl(TrelloCardDto trelloCardDto) {

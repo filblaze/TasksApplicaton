@@ -1,16 +1,15 @@
 package com.kodilla.tasks.controller;
 
-import com.kodilla.tasks.domain.CreatedTrelloCard;
+import com.kodilla.tasks.domain.CreatedTrelloCardDto;
 import com.kodilla.tasks.domain.TrelloBoardDto;
 import com.kodilla.tasks.domain.TrelloCardDto;
 import com.kodilla.tasks.service.TrelloService;
-import com.kodilla.tasks.trello.client.TrelloClient;
+import com.kodilla.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("v1/trello")
@@ -18,11 +17,11 @@ import java.util.Objects;
 @CrossOrigin("*")
 public class TrelloController {
 
-    private final TrelloService trelloService;
+    private final TrelloFacade trelloFacade;
 
     @GetMapping("boards")
     public ResponseEntity<List<TrelloBoardDto>> getTrelloBoards() {
-        return ResponseEntity.ok(trelloService.fetchTrelloBoards());
+        return ResponseEntity.ok(trelloFacade.fetchTrelloBoards());
 
         /*List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
@@ -34,7 +33,7 @@ public class TrelloController {
     }
 
     @PostMapping("cards")
-    public ResponseEntity<CreatedTrelloCard> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return ResponseEntity.ok(trelloService.createTrelloCard(trelloCardDto));
+    public ResponseEntity<CreatedTrelloCardDto> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return ResponseEntity.ok(trelloFacade.createCard(trelloCardDto));
     }
 }

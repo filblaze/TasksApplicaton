@@ -1,7 +1,7 @@
 package com.kodilla.tasks.service;
 
 import com.kodilla.tasks.config.AdminConfig;
-import com.kodilla.tasks.domain.CreatedTrelloCard;
+import com.kodilla.tasks.domain.CreatedTrelloCardDto;
 import com.kodilla.tasks.domain.TrelloBoardDto;
 import com.kodilla.tasks.domain.TrelloCardDto;
 import com.kodilla.tasks.domain.Mail;
@@ -26,8 +26,8 @@ public class TrelloService {
         return trelloClient.getTrelloBoards();
     }
 
-    public CreatedTrelloCard createTrelloCard(final TrelloCardDto trelloCardDto) {
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+    public CreatedTrelloCardDto createTrelloCard(final TrelloCardDto trelloCardDto) {
+        CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
         ofNullable(newCard).ifPresent(card -> emailService.send(
                 new Mail(
                         adminConfig.getAdminMail(),

@@ -1,6 +1,6 @@
 package com.kodilla.tasks.trello.client;
 
-import com.kodilla.tasks.domain.CreatedTrelloCard;
+import com.kodilla.tasks.domain.CreatedTrelloCardDto;
 import com.kodilla.tasks.domain.TrelloBoardDto;
 import com.kodilla.tasks.domain.TrelloCardDto;
 import com.kodilla.tasks.trello.config.TrelloConfig;
@@ -66,15 +66,15 @@ class TrelloClientTest {
         );
         URI uri = new
                 URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",
                 "Test task",
                 "http://test.com"
         );
         when(restTemplate.postForObject(uri, null,
-                CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
+                CreatedTrelloCardDto.class)).thenReturn(createdTrelloCardDto);
         // When
-        CreatedTrelloCard newCard =
+        CreatedTrelloCardDto newCard =
                 trelloClient.createNewCard(trelloCardDto);
         // Then
         assertEquals("1", newCard.getId());

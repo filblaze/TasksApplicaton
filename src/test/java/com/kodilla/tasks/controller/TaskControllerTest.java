@@ -51,6 +51,7 @@ class TaskControllerTest {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(0)));
     }
+
     @Test
     void shouldGetTasks() throws Exception {
         //Given
